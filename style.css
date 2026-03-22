@@ -278,18 +278,11 @@ footer {
     padding-top: 3.2rem;
   }
 
-.hero-text h1,
-.hero-text p {
-  display: inline;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.2)
-  );
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
+.hero-text {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 1.2rem;
+  border-radius: 12px;
 }
-
   .grid-2 {
     grid-template-columns: 1fr;
   }
