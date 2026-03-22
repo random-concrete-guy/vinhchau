@@ -126,6 +126,9 @@ header {
   text-align: center;
   position: relative;
   overflow: hidden;
+
+  max-width: 800px;   /* 👈 control width here */
+  margin: 0 auto;     /* 👈 center it */
 }
 
 .hero-card::before {
