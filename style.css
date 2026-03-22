@@ -285,6 +285,8 @@ footer {
   .grid-2 {
     grid-template-columns: 1fr;
   }
+}
+
 .hero-bg {
   position: relative;
   background: url("winter.jpg") center center / cover no-repeat;
