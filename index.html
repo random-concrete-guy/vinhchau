@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Research Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #1d4ed8;
+      --border: #e5e7eb;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav .brand {
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.2rem 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    .profile-photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #dbeafe;
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.1rem;
+      border-radius: 10px;
+      font-weight: bold;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+    }
+
+    section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1.2rem 2rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .item-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      margin-top: 0.6rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 2rem 1rem 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav">
+      <div class="brand">Your Name</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Hello, I’m Your Name</h1>
+        <p>
+          I am a PhD student / researcher in Civil & Environmental Engineering.
+          My work focuses on concrete durability, transport properties, and freeze-thaw performance.
+        </p>
+        <p>
+          This website is my personal space to share research, publications, projects, and academic updates.
+        </p>
+
+        <div class="button-group">
+          <a class="btn btn-primary" href="#research">View Research</a>
+          <a class="btn btn-secondary" href="cv.pdf" target="_blank">Download CV</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img src="profile.jpg" alt="Profile photo" class="profile-photo" />
+        <h2>Your Name</h2>
+        <p class="muted">PhD Student / Researcher</p>
+        <p class="muted">University Name</p>
+        <p style="margin-top: 0.8rem;">
+          <a href="mailto:yourname@email.com">yourname@email.com</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="card">
+        <p>
+          Write a short academic bio here. Mention your current degree, university,
+          research interests, and broader goals. Keep this section clear and easy to read.
+        </p>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2 class="section-title">Research Interests</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="item-title">Concrete Durability</div>
+          <p class="muted">
+            Freeze-thaw resistance, salt scaling, and durability of cementitious materials.
+          </p>
+        </div>
+        <div class="card">
+          <div class="item-title">Transport Properties</div>
+          <p class="muted">
+            Surface resistivity, chloride penetration, sorptivity, and pore structure relationships.
+          </p>
+        </div>
+        <div class="card">
+          <div class="item-title">Sustainable Materials</div>
+          <p class="muted">
+            Use of SCMs, lightweight materials, and innovative concrete mixtures.
+          </p>
+        </div>
+        <div class="card">
+          <div class="item-title">Data-Driven Modeling</div>
+          <p class="muted">
+            Regression, classification, and predictive analysis for material performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2 class="section-title">Selected Publications</h2>
+      <div class="card">
+        <div class="item-title">Paper Title 1</div>
+        <p class="muted">Author A, Your Name, Author C. Journal Name, 2026.</p>
+        <p><a href="#">[PDF]</a> <a href="#">[DOI]</a></p>
+      </div>
+
+      <div class="card">
+        <div class="item-title">Paper Title 2</div>
+        <p class="muted">Your Name, Author B. Conference / Journal, 2025.</p>
+        <p><a href="#">[PDF]</a> <a href="#">[DOI]</a></p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="card">
+        <div class="item-title">Project Title</div>
+        <p class="muted">A short description of the project, goals, methods, and key outcomes.</p>
+        <ul>
+          <li>Key point or contribution</li>
+          <li>Method or experiment used</li>
+          <li>Main finding or impact</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="item-title">Another Project</div>
+        <p class="muted">You can also use this section for thesis work, reports, or portfolio items.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="card">
+        <p>Email: <a href="mailto:yourname@email.com">yourname@email.com</a></p>
+        <p>Google Scholar: <a href="#">Your Scholar Profile</a></p>
+        <p>LinkedIn: <a href="#">Your LinkedIn</a></p>
+        <p>GitHub: <a href="#">Your GitHub</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Your Name. Built with GitHub Pages.</p>
+  </footer>
+
+</body>
+</html>
