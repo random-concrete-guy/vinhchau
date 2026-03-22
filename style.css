@@ -278,11 +278,10 @@ footer {
     padding-top: 3.2rem;
   }
 
-.hero-text {
-  background: rgba(0, 0, 0, 0.35);
-  padding: 1.2rem;
-  border-radius: 12px;
-}
+.hero-text h1,
+.hero-text p {
+  color: #000;
+  font-weight: 700;
   .grid-2 {
     grid-template-columns: 1fr;
   }
