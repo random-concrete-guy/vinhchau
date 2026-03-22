@@ -278,17 +278,16 @@ footer {
     padding-top: 3.2rem;
   }
 
-  .hero-text h1 {
-    font-size: 2.3rem;
-    color: #ffffff;
-  }
-  
-  .hero-text p {
-  color: rgba(255, 255, 255, 0.85);
-}
-
-  .hero-text {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+.hero-text h1,
+.hero-text p {
+  display: inline;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.2)
+  );
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
 }
 
   .grid-2 {
