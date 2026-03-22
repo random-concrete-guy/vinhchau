@@ -285,4 +285,23 @@ footer {
   .grid-2 {
     grid-template-columns: 1fr;
   }
+/* ===== Winter Hero Background ===== */
+.hero-bg {
+  position: relative;
+  background: url("winter.jpg") center/cover no-repeat;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(240, 245, 250, 0.82);
+  backdrop-filter: blur(3px);
+}
+
+.hero-bg > * {
+  position: relative;
+  z-index: 1;
 }
