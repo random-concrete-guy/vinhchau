@@ -285,20 +285,22 @@ footer {
   .grid-2 {
     grid-template-columns: 1fr;
   }
-/* ===== Winter Hero Background ===== */
 .hero-bg {
   position: relative;
-  background: url("winter.jpg") center/cover no-repeat;
+  background: url("winter.jpg") center center / cover no-repeat;
   border-radius: 0 0 24px 24px;
   overflow: hidden;
+  min-height: 520px;
 }
 
 .hero-bg::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(240, 245, 250, 0.82);
-  backdrop-filter: blur(3px);
+  background: linear-gradient(
+    rgba(240, 245, 250, 0.45),
+    rgba(220, 230, 240, 0.35)
+  );
 }
 
 .hero-bg > * {
