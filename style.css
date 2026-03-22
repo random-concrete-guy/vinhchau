@@ -1,15 +1,17 @@
-/* Professional Personal Website CSS */
+/* Concrete-inspired Personal Website CSS */
 
 :root {
-  --bg: #f5f7fb;
-  --surface: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --accent: #1d4ed8;
-  --accent-soft: #dbeafe;
-  --border: #e5e7eb;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  --radius: 18px;
+  --bg: #ece9e3;
+  --surface: #f8f7f4;
+  --surface-2: #e3ded6;
+  --text: #2f3437;
+  --muted: #6f767d;
+  --accent: #5f7d8a;
+  --accent-dark: #465e68;
+  --accent-soft: #d6e0e4;
+  --border: #cfc8be;
+  --shadow: 0 8px 24px rgba(60, 60, 60, 0.08);
+  --radius: 16px;
   --max-width: 1050px;
 }
 
@@ -25,7 +27,7 @@ body {
   margin: 0;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   line-height: 1.7;
-  background: var(--bg);
+  background: linear-gradient(to bottom, #efede8, #e7e2d9);
   color: var(--text);
 }
 
@@ -35,7 +37,7 @@ img {
 }
 
 a {
-  color: var(--accent);
+  color: var(--accent-dark);
   text-decoration: none;
 }
 
@@ -47,8 +49,8 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
+  background: rgba(248, 247, 244, 0.9);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -59,16 +61,31 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .brand {
   font-size: 1.15rem;
   font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--text);
 }
 
 .nav-links {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.nav-links a:hover {
+  color: var(--accent-dark);
+  text-decoration: none;
 }
 
 .hero {
@@ -78,19 +95,25 @@ header {
   display: grid;
   grid-template-columns: 1.3fr 0.9fr;
   gap: 2rem;
+  align-items: center;
 }
 
 .hero-text h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+  line-height: 1.15;
+  color: var(--text);
 }
 
 .hero-text p {
   color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 60ch;
 }
 
 .hero-card {
-  background: var(--surface);
+  background: linear-gradient(145deg, #f7f5f1, #e2ddd5);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 2rem;
@@ -104,16 +127,31 @@ header {
   object-fit: cover;
   margin: 0 auto 1rem;
   border: 4px solid var(--accent-soft);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.hero-card h2 {
+  margin-bottom: 0.4rem;
+}
+
+.hero-card p {
+  color: var(--muted);
 }
 
 .button-group {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 0.7rem 1rem;
+  display: inline-block;
+  padding: 0.75rem 1.1rem;
   border-radius: 10px;
   border: 1px solid var(--accent);
+  font-weight: 700;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
@@ -121,9 +159,19 @@ header {
   color: white;
 }
 
+.btn-primary:hover {
+  background: var(--accent-dark);
+  text-decoration: none;
+}
+
 .btn-secondary {
-  background: white;
-  color: var(--accent);
+  background: transparent;
+  color: var(--accent-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-soft);
+  text-decoration: none;
 }
 
 section {
@@ -134,10 +182,14 @@ section {
 
 .section-title {
   font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--text);
 }
 
 .card {
-  background: var(--surface);
+  background: linear-gradient(180deg, #f8f7f4, #ece8e1);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: 1.5rem;
   box-shadow: var(--shadow);
@@ -150,12 +202,40 @@ section {
   gap: 1rem;
 }
 
+.item-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
 .muted {
   color: var(--muted);
+}
+
+ul {
+  padding-left: 1.2rem;
 }
 
 footer {
   text-align: center;
   padding: 2rem;
   color: var(--muted);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 3rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2.3rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
