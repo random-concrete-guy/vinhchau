@@ -289,7 +289,7 @@ footer {
 
 .hero-bg {
   position: relative;
-  background: url("winter.jpg") center center / cover no-repeat;
+  background: url("winter.jpg") center 70% / cover no-repeat;
   border-radius: 0 0 24px 24px;
   overflow: hidden;
   min-height: 520px;
@@ -299,7 +299,7 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.25);
 }
 
 .hero-bg > * {
