@@ -280,7 +280,16 @@ footer {
 
   .hero-text h1 {
     font-size: 2.3rem;
+    color: #ffffff;
   }
+  
+  .hero-text p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+  .hero-text {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
 
   .grid-2 {
     grid-template-columns: 1fr;
