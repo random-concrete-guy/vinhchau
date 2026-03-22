@@ -66,6 +66,7 @@ header {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+  background: var(--accent-soft);
 }
 
 .brand {
