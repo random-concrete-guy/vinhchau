@@ -273,23 +273,23 @@ footer {
   transform: translateY(0);
 }
 
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    padding-top: 3.2rem;
-  }
-
-  .hero-text h1,
-  .hero-text p {
-    color: #000;
-    font-weight: 700;
-  }
-
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
+/* =========================
+   HERO TEXT (ALWAYS APPLY)
+========================= */
+.hero-text h1 {
+  color: #000;
+  font-weight: 800;
 }
 
+.hero-text p {
+  color: #000;
+  font-weight: 700;
+}
+
+
+/* =========================
+   HERO BACKGROUND
+========================= */
 .hero-bg {
   position: relative;
   background: url("winter.jpg") center 70% / cover no-repeat;
@@ -298,14 +298,48 @@ footer {
   min-height: 520px;
 }
 
+
+/* =========================
+   OVERLAY (LIGHT for readability)
+========================= */
 .hero-bg::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.35); /* light overlay */
 }
 
+
+/* =========================
+   KEEP TEXT ABOVE OVERLAY
+========================= */
 .hero-bg > * {
   position: relative;
   z-index: 1;
+}
+
+
+/* =========================
+   HERO LAYOUT (OPTIONAL BUT RECOMMENDED)
+========================= */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 3.2rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
