@@ -297,10 +297,7 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    rgba(240, 245, 250, 0.45),
-    rgba(220, 230, 240, 0.35)
-  );
+  background: rgba(255, 0, 0, 0.15);
 }
 
 .hero-bg > * {
