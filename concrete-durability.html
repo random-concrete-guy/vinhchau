@@ -30,7 +30,45 @@
    Below is some results
    </p>
 
-   <p>
+       <div class="scaling-viewer">
+    <div class="scaling-image-wrap">
+      <img
+        id="cycleImage"
+        src="images/cycle0.jpg"
+        alt="Concrete surface at 0 cycles"
+        class="scaling-image"
+      >
+    </div>
+
+    <div class="scaling-info">
+      <h3 id="cycleLabel">0 cycles</h3>
+      <p id="cycleDescription" class="muted">
+        Initial surface condition before freeze-thaw exposure.
+      </p>
+    </div>
+
+    <div class="cycle-controls">
+      <input
+        type="range"
+        id="cycleSlider"
+        min="0"
+        max="5"
+        step="1"
+        value="0"
+      >
+
+      <div class="cycle-marks">
+        <button class="cycle-btn active" data-index="0">0</button>
+        <button class="cycle-btn" data-index="1">7</button>
+        <button class="cycle-btn" data-index="2">14</button>
+        <button class="cycle-btn" data-index="3">28</button>
+        <button class="cycle-btn" data-index="4">56</button>
+        <button class="cycle-btn" data-index="5">80</button>
+      </div>
+    </div>
+  </div>
+   
+     <p>
     My research focuses on understanding the role of ionic transport, surface resistivity (SR), 
     and rapid chloride permeability (RCP) in controlling salt scaling behavior.
    </p>
