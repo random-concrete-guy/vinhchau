@@ -28,29 +28,49 @@ const cycleData = [
     description: "Initial surface condition before freeze-thaw exposure."
   },
   {
-    label: "7 cycles",
-    src: "images/cycle7.jpg",
-    description: "Early exposure stage with little or limited visible surface change."
+    label: "4 cycles",
+    src: "images/cycle4.jpg",
+    description: "Very early stage with minimal visible change."
+  },
+  {
+    label: "8 cycles",
+    src: "images/cycle8.jpg",
+    description: "Early exposure stage; surface still mostly intact."
   },
   {
     label: "14 cycles",
     src: "images/cycle14.jpg",
-    description: "Initial signs of progressive surface distress may begin to appear."
+    description: "Initial signs of surface distress may begin."
   },
   {
     label: "28 cycles",
     src: "images/cycle28.jpg",
-    description: "Scaling becomes more noticeable as exposure continues."
+    description: "Scaling becomes more noticeable."
+  },
+  {
+    label: "40 cycles",
+    src: "images/cycle40.jpg",
+    description: "Progressive surface damage develops."
   },
   {
     label: "56 cycles",
     src: "images/cycle56.jpg",
-    description: "Surface scaling is clearly developed at this stage."
+    description: "Clear scaling with visible material loss."
   },
   {
-    label: "80 cycles",
-    src: "images/cycle80.jpg",
-    description: "Late-stage surface deterioration after prolonged freeze-thaw cycling."
+    label: "70 cycles",
+    src: "images/cycle70.jpg",
+    description: "Advanced deterioration of the surface."
+  },
+  {
+    label: "84 cycles",
+    src: "images/cycle84.jpg",
+    description: "Severe scaling across the exposed surface."
+  },
+  {
+    label: "98 cycles",
+    src: "images/cycle98.jpg",
+    description: "Late-stage deterioration after prolonged exposure."
   }
 ];
 
