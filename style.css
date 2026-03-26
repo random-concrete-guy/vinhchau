@@ -219,6 +219,9 @@ section {
 }
 
 .card {
+  display: block;             
+  text-decoration: none;     
+  color: inherit;
   background: linear-gradient(180deg, #fbfdff, #eef4f8);
   border: 1px solid var(--border);
   border-top: 4px solid var(--accent);
