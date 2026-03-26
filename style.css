@@ -360,21 +360,63 @@ footer {
   border-radius: 14px;
 }
 
+/* two-column layout */
+.scaling-top {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-bottom: 1.2rem;
+}
+
+/* left: image */
 .scaling-image-wrap {
   width: 100%;
+  min-height: 420px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border);
   background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scaling-image {
-  width: 100%;
+  max-width: 100%;
   max-height: 420px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   display: block;
   margin: 0 auto;
   background: #fff;
+  transition: opacity 0.25s ease;
+}
+
+/* right: plot panel */
+.scaling-plot-panel {
+  background: rgba(255,255,255,0.8);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1rem 1.2rem;
+  min-height: 420px;
+}
+
+.scaling-plot-panel h3 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+#scalingChart {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 0.9rem;
 }
 
 .scaling-info {
@@ -421,4 +463,20 @@ footer {
   background: var(--accent);
   color: white;
   box-shadow: 0 6px 14px rgba(79, 122, 150, 0.18);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .scaling-top {
+    grid-template-columns: 1fr;
+  }
+
+  .scaling-image-wrap,
+  .scaling-plot-panel {
+    min-height: auto;
+  }
+
+  .scaling-image {
+    max-height: 360px;
+  }
 }
