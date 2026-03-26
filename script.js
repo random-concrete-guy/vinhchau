@@ -33,63 +33,63 @@ const cycleData = [
     label: "4 cycles",
     src: "images/cycle4.jpg",
     description: "Very early stage with minimal visible change.",
-    scaling: 20
+    scaling: 152
   },
   {
     cycle: 8,
     label: "8 cycles",
     src: "images/cycle8.jpg",
-    description: "Early exposure stage; surface still mostly intact.",
-    scaling: 45
+    description: "Insignificant dammage.",
+    scaling: 253
   },
   {
     cycle: 14,
     label: "14 cycles",
     src: "images/cycle14.jpg",
-    description: "Initial signs of surface distress may begin.",
-    scaling: 90
+    description: "Insignificant dammage.",
+    scaling: 397
   },
   {
     cycle: 28,
     label: "28 cycles",
     src: "images/cycle28.jpg",
     description: "Scaling becomes more noticeable.",
-    scaling: 220
+    scaling: 700
   },
   {
     cycle: 40,
     label: "40 cycles",
     src: "images/cycle40.jpg",
     description: "Progressive surface damage develops.",
-    scaling: 380
+    scaling: 1145
   },
   {
     cycle: 56,
     label: "56 cycles",
     src: "images/cycle56.jpg",
     description: "Clear scaling with visible material loss.",
-    scaling: 620
+    scaling: 1506
   },
   {
     cycle: 70,
     label: "70 cycles",
     src: "images/cycle70.jpg",
     description: "Advanced deterioration of the surface.",
-    scaling: 900
+    scaling: 1988
   },
   {
     cycle: 84,
     label: "84 cycles",
     src: "images/cycle84.jpg",
     description: "Severe scaling across the exposed surface.",
-    scaling: 1180
+    scaling: 2439
   },
   {
     cycle: 98,
     label: "98 cycles",
     src: "images/cycle98.jpg",
     description: "Late-stage deterioration after prolonged exposure.",
-    scaling: 1450
+    scaling: 3082
   }
 ];
 
