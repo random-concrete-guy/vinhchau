@@ -39,14 +39,14 @@ const cycleData = [
     cycle: 8,
     label: "8 cycles",
     src: "images/cycle8.jpg",
-    description: "Insignificant dammage.",
+    description: "Early exposure stage; surface still mostly intact.",
     scaling: 253
   },
   {
     cycle: 14,
     label: "14 cycles",
     src: "images/cycle14.jpg",
-    description: "Insignificant dammage.",
+    description: "Initial signs of surface distress may begin.",
     scaling: 397
   },
   {
@@ -89,7 +89,7 @@ const cycleData = [
     label: "98 cycles",
     src: "images/cycle98.jpg",
     description: "Late-stage deterioration after prolonged exposure.",
-    scaling: 3082
+    scaling: 3081
   }
 ];
 
@@ -103,7 +103,7 @@ const chartCanvas = document.getElementById("scalingChart");
 let cycleTimeout;
 
 // =========================
-// Draw plot
+// Draw progressive chart
 // =========================
 function drawScalingChart(activeIndex) {
   if (!chartCanvas) return;
@@ -114,17 +114,17 @@ function drawScalingChart(activeIndex) {
 
   ctx.clearRect(0, 0, w, h);
 
-  const padding = { top: 30, right: 20, bottom: 45, left: 60 };
+  const padding = { top: 30, right: 20, bottom: 50, left: 60 };
   const plotW = w - padding.left - padding.right;
   const plotH = h - padding.top - padding.bottom;
 
-  const xValues = cycleData.map(d => d.cycle);
-  const yValues = cycleData.map(d => d.scaling);
+  const allX = cycleData.map(d => d.cycle);
+  const allY = cycleData.map(d => d.scaling);
 
-  const xMin = Math.min(...xValues);
-  const xMax = Math.max(...xValues);
+  const xMin = Math.min(...allX);
+  const xMax = Math.max(...allX);
   const yMin = 0;
-  const yMax = Math.max(...yValues) * 1.1;
+  const yMax = Math.max(...allY) * 1.1;
 
   function xScale(x) {
     return padding.left + ((x - xMin) / (xMax - xMin)) * plotW;
@@ -143,8 +143,7 @@ function drawScalingChart(activeIndex) {
   ctx.lineTo(padding.left + plotW, padding.top + plotH);
   ctx.stroke();
 
-  // y ticks
-  ctx.fillStyle = "#556";
+  // y grid and labels
   ctx.font = "12px Arial";
   ctx.textAlign = "right";
   ctx.textBaseline = "middle";
@@ -164,12 +163,13 @@ function drawScalingChart(activeIndex) {
     ctx.fillText(Math.round(yVal), padding.left - 8, y);
   }
 
-  // x ticks
+  // x labels
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
-  xValues.forEach((xVal) => {
+  allX.forEach((xVal) => {
     const x = xScale(xVal);
-    ctx.strokeStyle = "rgba(120,130,140,0.18)";
+
+    ctx.strokeStyle = "rgba(120,130,140,0.12)";
     ctx.beginPath();
     ctx.moveTo(x, padding.top);
     ctx.lineTo(x, padding.top + plotH);
@@ -179,66 +179,86 @@ function drawScalingChart(activeIndex) {
     ctx.fillText(String(xVal), x, padding.top + plotH + 8);
   });
 
-  // axis labels
+  // axis titles
   ctx.save();
   ctx.fillStyle = "#334";
   ctx.font = "13px Arial";
   ctx.textAlign = "center";
   ctx.fillText("Freeze-thaw cycles", padding.left + plotW / 2, h - 10);
 
-  ctx.translate(16, padding.top + plotH / 2);
+  ctx.translate(18, padding.top + plotH / 2);
   ctx.rotate(-Math.PI / 2);
   ctx.fillText("Scaling mass (g/m²)", 0, 0);
   ctx.restore();
 
-  // line
-  ctx.strokeStyle = "#4f7a96";
-  ctx.lineWidth = 2.5;
-  ctx.beginPath();
-  cycleData.forEach((d, i) => {
-    const x = xScale(d.cycle);
-    const y = yScale(d.scaling);
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  });
-  ctx.stroke();
+  // only draw data up to selected cycle
+  const visibleData = cycleData.slice(0, activeIndex + 1);
 
-  // points
-  cycleData.forEach((d, i) => {
+  // progressive line
+  if (visibleData.length > 0) {
+    ctx.strokeStyle = "#1f78d1";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+
+    visibleData.forEach((d, i) => {
+      const x = xScale(d.cycle);
+      const y = yScale(d.scaling);
+
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+
+    ctx.stroke();
+  }
+
+  // visible points only
+  visibleData.forEach((d, i) => {
     const x = xScale(d.cycle);
     const y = yScale(d.scaling);
 
     ctx.beginPath();
-    ctx.arc(x, y, i === activeIndex ? 7 : 4, 0, Math.PI * 2);
-    ctx.fillStyle = i === activeIndex ? "#1f78d1" : "#4f7a96";
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = "#4f7a96";
     ctx.fill();
-
-    if (i === activeIndex) {
-      ctx.strokeStyle = "#173a56";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // tooltip-like label
-      const label = `${d.cycle}, ${d.scaling}`;
-      ctx.font = "12px Arial";
-      const textW = ctx.measureText(label).width;
-      const boxX = x - textW / 2 - 8;
-      const boxY = y - 34;
-
-      ctx.fillStyle = "rgba(255,255,255,0.96)";
-      ctx.strokeStyle = "#9fb4c3";
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.roundRect(boxX, boxY, textW + 16, 22, 6);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.fillStyle = "#243340";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(label, x, boxY + 11);
-    }
   });
+
+  // highlight active point
+  const active = cycleData[activeIndex];
+  if (active) {
+    const x = xScale(active.cycle);
+    const y = yScale(active.scaling);
+
+    ctx.beginPath();
+    ctx.arc(x, y, 7, 0, Math.PI * 2);
+    ctx.fillStyle = "#1f78d1";
+    ctx.fill();
+    ctx.strokeStyle = "#173a56";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // label box
+    const label = `(${active.cycle}, ${active.scaling})`;
+    ctx.font = "12px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    const textW = ctx.measureText(label).width;
+    const boxW = textW + 16;
+    const boxH = 24;
+    const boxX = x - boxW / 2;
+    const boxY = y - 38;
+
+    ctx.fillStyle = "rgba(255,255,255,0.96)";
+    ctx.strokeStyle = "#9fb4c3";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.rect(boxX, boxY, boxW, boxH);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#243340";
+    ctx.fillText(label, x, boxY + boxH / 2);
+  }
 }
 
 // =========================
@@ -262,7 +282,7 @@ function updateCycle(index) {
     cycleImage.src = item.src;
     cycleImage.alt = `Concrete surface at ${item.label}`;
     cycleLabel.textContent = item.label;
-    cycleDescription.textContent = `${item.description} Scaling mass: ${item.scaling} g/m².`;
+    cycleDescription.textContent = `${item.description} Current scaling: ${item.scaling} g/m².`;
     cycleImage.style.opacity = "1";
   }, 120);
 
