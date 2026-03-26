@@ -119,12 +119,13 @@ function drawScalingChart(activeIndex) {
   const plotH = h - padding.top - padding.bottom;
 
   const allX = cycleData.map(d => d.cycle);
-  const allY = cycleData.map(d => d.scaling);
 
   const xMin = Math.min(...allX);
   const xMax = Math.max(...allX);
+
+  // Fixed y-axis limits
   const yMin = 0;
-  const yMax = Math.max(...allY) * 1.1;
+  const yMax = 4000;
 
   function xScale(x) {
     return padding.left + ((x - xMin) / (xMax - xMin)) * plotW;
@@ -134,7 +135,9 @@ function drawScalingChart(activeIndex) {
     return padding.top + plotH - ((y - yMin) / (yMax - yMin)) * plotH;
   }
 
-  // axes
+  // =========================
+  // Axes
+  // =========================
   ctx.lineWidth = 1.2;
   ctx.strokeStyle = "#334";
   ctx.beginPath();
@@ -143,29 +146,50 @@ function drawScalingChart(activeIndex) {
   ctx.lineTo(padding.left + plotW, padding.top + plotH);
   ctx.stroke();
 
-  // y grid and labels
+  // =========================
+  // Y-axis labels: only 0 and 4000
+  // =========================
   ctx.font = "12px Arial";
   ctx.textAlign = "right";
   ctx.textBaseline = "middle";
+  ctx.fillStyle = "#5d6b78";
 
-  const yTicks = 5;
-  for (let i = 0; i <= yTicks; i++) {
-    const yVal = yMin + (i / yTicks) * (yMax - yMin);
-    const y = yScale(yVal);
+  ctx.fillText("0", padding.left - 8, yScale(0));
+  ctx.fillText("4000", padding.left - 8, yScale(4000));
 
-    ctx.strokeStyle = "rgba(120,130,140,0.18)";
+  // =========================
+  // Dashed threshold lines
+  // =========================
+  function drawDashedLine(yValue, label, color) {
+    const y = yScale(yValue);
+
+    ctx.save();
+    ctx.setLineDash([6, 6]);
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+
     ctx.beginPath();
     ctx.moveTo(padding.left, y);
     ctx.lineTo(padding.left + plotW, y);
     ctx.stroke();
+    ctx.restore();
 
-    ctx.fillStyle = "#5d6b78";
-    ctx.fillText(Math.round(yVal), padding.left - 8, y);
+    ctx.fillStyle = color;
+    ctx.font = "12px Arial";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "bottom";
+    ctx.fillText(label, padding.left + 6, y - 4);
   }
 
-  // x labels
+  drawDashedLine(500, "Insignificant limit (500)", "#4caf50");
+  drawDashedLine(1500, "Failure limit (1500)", "#d9534f");
+
+  // =========================
+  // X-axis labels and light vertical guides
+  // =========================
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
+
   allX.forEach((xVal) => {
     const x = xScale(xVal);
 
@@ -179,11 +203,14 @@ function drawScalingChart(activeIndex) {
     ctx.fillText(String(xVal), x, padding.top + plotH + 8);
   });
 
-  // axis titles
+  // =========================
+  // Axis titles
+  // =========================
   ctx.save();
   ctx.fillStyle = "#334";
   ctx.font = "13px Arial";
   ctx.textAlign = "center";
+  ctx.textBaseline = "alphabetic";
   ctx.fillText("Freeze-thaw cycles", padding.left + plotW / 2, h - 10);
 
   ctx.translate(18, padding.top + plotH / 2);
@@ -191,10 +218,12 @@ function drawScalingChart(activeIndex) {
   ctx.fillText("Scaling mass (g/m²)", 0, 0);
   ctx.restore();
 
-  // only draw data up to selected cycle
+  // =========================
+  // Draw data up to selected cycle only
+  // =========================
   const visibleData = cycleData.slice(0, activeIndex + 1);
 
-  // progressive line
+  // Progressive line
   if (visibleData.length > 0) {
     ctx.strokeStyle = "#1f78d1";
     ctx.lineWidth = 2.5;
@@ -211,8 +240,8 @@ function drawScalingChart(activeIndex) {
     ctx.stroke();
   }
 
-  // visible points only
-  visibleData.forEach((d, i) => {
+  // Visible points
+  visibleData.forEach((d) => {
     const x = xScale(d.cycle);
     const y = yScale(d.scaling);
 
@@ -222,7 +251,7 @@ function drawScalingChart(activeIndex) {
     ctx.fill();
   });
 
-  // highlight active point
+  // Highlight active point
   const active = cycleData[activeIndex];
   if (active) {
     const x = xScale(active.cycle);
@@ -236,7 +265,7 @@ function drawScalingChart(activeIndex) {
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // label box
+    // Label box
     const label = `(${active.cycle}, ${active.scaling})`;
     ctx.font = "12px Arial";
     ctx.textAlign = "center";
