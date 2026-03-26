@@ -30,7 +30,8 @@
    Below is some results
    </p>
 
-       <div class="scaling-viewer">
+<div class="scaling-viewer">
+  <div class="scaling-top">
     <div class="scaling-image-wrap">
       <img
         id="cycleImage"
@@ -40,37 +41,46 @@
       >
     </div>
 
-    <div class="scaling-info">
+    <div class="scaling-side-panel">
       <h3 id="cycleLabel">0 cycles</h3>
+
+      <p class="scaling-side-title">Observed condition</p>
       <p id="cycleDescription" class="muted">
         Initial surface condition before freeze-thaw exposure.
       </p>
-    </div>
 
-    <div class="cycle-controls">
-      <input
-        type="range"
-        id="cycleSlider"
-        min="0"
-        max="9"
-        step="1"
-        value="0"
-      >
+      <p class="scaling-side-title">Scaling mass</p>
+      <p id="cycleMass">0 g/m²</p>
 
-     <div class="cycle-marks">
-  <button class="cycle-btn active" data-index="0">0</button>
-  <button class="cycle-btn" data-index="1">4</button>
-  <button class="cycle-btn" data-index="2">8</button>
-  <button class="cycle-btn" data-index="3">14</button>
-  <button class="cycle-btn" data-index="4">28</button>
-  <button class="cycle-btn" data-index="5">40</button>
-  <button class="cycle-btn" data-index="6">56</button>
-  <button class="cycle-btn" data-index="7">70</button>
-  <button class="cycle-btn" data-index="8">84</button>
-  <button class="cycle-btn" data-index="9">98</button>
-     </div>
+      <p class="scaling-side-title">Damage level</p>
+      <p id="cycleLevel">None</p>
     </div>
   </div>
+
+  <div class="cycle-controls">
+    <input
+      type="range"
+      id="cycleSlider"
+      min="0"
+      max="9"
+      step="1"
+      value="0"
+    >
+
+    <div class="cycle-marks">
+      <button class="cycle-btn active" data-index="0">0</button>
+      <button class="cycle-btn" data-index="1">4</button>
+      <button class="cycle-btn" data-index="2">8</button>
+      <button class="cycle-btn" data-index="3">14</button>
+      <button class="cycle-btn" data-index="4">28</button>
+      <button class="cycle-btn" data-index="5">40</button>
+      <button class="cycle-btn" data-index="6">56</button>
+      <button class="cycle-btn" data-index="7">70</button>
+      <button class="cycle-btn" data-index="8">84</button>
+      <button class="cycle-btn" data-index="9">98</button>
+    </div>
+  </div>
+</div>
    
      <p>
     My research focuses on understanding the role of ionic transport, surface resistivity (SR), 
