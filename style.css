@@ -461,6 +461,24 @@ footer {
   color: white;
   box-shadow: 0 6px 14px rgba(79, 122, 150, 0.18);
 }
+.autoplay-controls {
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+#playPauseBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#playPauseBtn:hover {
+  opacity: 0.9;
+}
 
 @media (max-width: 900px) {
   .scaling-top {
