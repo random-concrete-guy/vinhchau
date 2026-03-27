@@ -479,7 +479,9 @@ footer {
 #playPauseBtn:hover {
   opacity: 0.9;
 }
-
+.cycle-marks {
+  display: none;
+}
 @media (max-width: 900px) {
   .scaling-top {
     grid-template-columns: 1fr;
