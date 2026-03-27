@@ -18,16 +18,16 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 // =========================
-// Scaling viewer data
+// DATASETS
 // =========================
-const cycleData = [
+const frostSaltData = [
   {
     cycle: 0,
     label: "0 cycles",
     src: "images/cycle0.jpg",
     description: "Initial surface condition before freeze-thaw exposure.",
     scaling: 0,
-    massGain: 0.0
+    secondary: 0.0
   },
   {
     cycle: 4,
@@ -35,7 +35,7 @@ const cycleData = [
     src: "images/cycle4.jpg",
     description: "Very early stage with minimal visible change.",
     scaling: 152,
-    massGain: 7.9
+    secondary: 7.9
   },
   {
     cycle: 8,
@@ -43,7 +43,7 @@ const cycleData = [
     src: "images/cycle8.jpg",
     description: "Early exposure stage; surface still mostly intact.",
     scaling: 253,
-    massGain: 11.9
+    secondary: 11.9
   },
   {
     cycle: 14,
@@ -51,7 +51,7 @@ const cycleData = [
     src: "images/cycle14.jpg",
     description: "Initial signs of surface distress may begin.",
     scaling: 397,
-    massGain: 17.4
+    secondary: 17.4
   },
   {
     cycle: 28,
@@ -59,7 +59,7 @@ const cycleData = [
     src: "images/cycle28.jpg",
     description: "Scaling becomes more noticeable.",
     scaling: 700,
-    massGain: 22.3
+    secondary: 22.3
   },
   {
     cycle: 40,
@@ -67,7 +67,7 @@ const cycleData = [
     src: "images/cycle40.jpg",
     description: "Progressive surface damage develops.",
     scaling: 1145,
-    massGain: 24.8
+    secondary: 24.8
   },
   {
     cycle: 56,
@@ -75,7 +75,7 @@ const cycleData = [
     src: "images/cycle56.jpg",
     description: "Clear scaling with visible material loss.",
     scaling: 1506,
-    massGain: 27.2
+    secondary: 27.2
   },
   {
     cycle: 70,
@@ -83,7 +83,7 @@ const cycleData = [
     src: "images/cycle70.jpg",
     description: "Advanced deterioration of the surface.",
     scaling: 1988,
-    massGain: 30.1
+    secondary: 30.1
   },
   {
     cycle: 84,
@@ -91,7 +91,7 @@ const cycleData = [
     src: "images/cycle84.jpg",
     description: "Severe scaling across the exposed surface.",
     scaling: 2439,
-    massGain: 32.5
+    secondary: 32.5
   },
   {
     cycle: 98,
@@ -99,25 +99,234 @@ const cycleData = [
     src: "images/cycle98.jpg",
     description: "Late-stage deterioration after prolonged exposure.",
     scaling: 3081,
-    massGain: 36.5
+    secondary: 36.5
   }
 ];
 
+// Replace this with your real pure frost data later
+const pureFrostData = [
+  {
+    cycle: 0,
+    label: "0 cycles",
+    src: "images/purefrost0.jpg",
+    description: "Initial condition before pure frost exposure.",
+    scaling: 0,
+    secondary: 100.0
+  },
+  {
+    cycle: 4,
+    label: "4 cycles",
+    src: "images/purefrost4.jpg",
+    description: "Minimal visible change under early pure frost exposure.",
+    scaling: 20,
+    secondary: 99.2
+  },
+  {
+    cycle: 8,
+    label: "8 cycles",
+    src: "images/purefrost8.jpg",
+    description: "Slight deterioration may begin under repeated freezing.",
+    scaling: 35,
+    secondary: 98.5
+  },
+  {
+    cycle: 14,
+    label: "14 cycles",
+    src: "images/purefrost14.jpg",
+    description: "Minor surface distress becomes more apparent.",
+    scaling: 60,
+    secondary: 97.0
+  },
+  {
+    cycle: 28,
+    label: "28 cycles",
+    src: "images/purefrost28.jpg",
+    description: "Progressive frost damage develops.",
+    scaling: 95,
+    secondary: 95.4
+  },
+  {
+    cycle: 40,
+    label: "40 cycles",
+    src: "images/purefrost40.jpg",
+    description: "Damage accumulation continues with repeated cycles.",
+    scaling: 130,
+    secondary: 93.8
+  },
+  {
+    cycle: 56,
+    label: "56 cycles",
+    src: "images/purefrost56.jpg",
+    description: "More pronounced deterioration is visible.",
+    scaling: 180,
+    secondary: 91.5
+  },
+  {
+    cycle: 70,
+    label: "70 cycles",
+    src: "images/purefrost70.jpg",
+    description: "Advanced damage state under pure frost attack.",
+    scaling: 240,
+    secondary: 88.0
+  },
+  {
+    cycle: 84,
+    label: "84 cycles",
+    src: "images/purefrost84.jpg",
+    description: "Severe frost-induced deterioration continues.",
+    scaling: 300,
+    secondary: 84.5
+  },
+  {
+    cycle: 98,
+    label: "98 cycles",
+    src: "images/purefrost98.jpg",
+    description: "Late-stage pure frost damage after prolonged exposure.",
+    scaling: 360,
+    secondary: 80.0
+  }
+];
+
+const modes = {
+  frostSalt: {
+    name: "Frost-salt attack",
+    data: frostSaltData,
+    secondaryTitle: "Cryogenic suction (g)",
+    secondaryValueLabel: "Current cryogenic suction",
+    secondaryKey: "secondary",
+    secondaryDecimals: 1,
+    secondaryYMin: 0,
+    secondaryYMax: 40,
+    secondaryShowOnlyMinMax: true,
+    secondaryLineColor: "#2a9d8f",
+    secondaryPointColor: "#5c8f88",
+    scalingYMin: 0,
+    scalingYMax: 4000,
+    showScalingThresholds: true
+  },
+  pureFrost: {
+    name: "Pure frost attack",
+    data: pureFrostData,
+    secondaryTitle: "Relative dynamic modulus (%)",
+    secondaryValueLabel: "Current RDM",
+    secondaryKey: "secondary",
+    secondaryDecimals: 1,
+    secondaryYMin: 0,
+    secondaryYMax: 100,
+    secondaryShowOnlyMinMax: true,
+    secondaryLineColor: "#8a5cf6",
+    secondaryPointColor: "#a084e8",
+    scalingYMin: 0,
+    scalingYMax: 400,
+    showScalingThresholds: false
+  }
+};
+
+let currentMode = "frostSalt";
+
+// =========================
+// ELEMENTS
+// =========================
 const cycleImage = document.getElementById("cycleImage");
 const cycleLabel = document.getElementById("cycleLabel");
 const cycleDescription = document.getElementById("cycleDescription");
 const cycleSlider = document.getElementById("cycleSlider");
-const cycleButtons = document.querySelectorAll(".cycle-btn");
 
 const scalingCanvas = document.getElementById("scalingChart");
 const massGainCanvas = document.getElementById("massGainChart");
+
 const playPauseBtn = document.getElementById("playPauseBtn");
+const frostSaltTab = document.getElementById("frostSaltTab");
+const pureFrostTab = document.getElementById("pureFrostTab");
 
 let cycleTimeout;
 
 // =========================
-// Shared chart helpers
+// AUTOPLAY
 // =========================
+let autoplayInterval = null;
+let isPlaying = true;
+let currentIndex = 0;
+const autoplayDelay = 1800;
+
+// =========================
+// HELPERS
+// =========================
+function getActiveModeConfig() {
+  return modes[currentMode];
+}
+
+function getActiveData() {
+  return getActiveModeConfig().data;
+}
+
+function updateSliderBounds() {
+  const activeData = getActiveData();
+  if (!cycleSlider) return;
+  cycleSlider.min = 0;
+  cycleSlider.max = activeData.length - 1;
+  cycleSlider.step = 1;
+}
+
+function setActiveTabUI() {
+  if (frostSaltTab) {
+    frostSaltTab.classList.toggle("active", currentMode === "frostSalt");
+  }
+  if (pureFrostTab) {
+    pureFrostTab.classList.toggle("active", currentMode === "pureFrost");
+  }
+}
+
+function startAutoplay() {
+  if (autoplayInterval) return;
+
+  autoplayInterval = setInterval(() => {
+    const activeData = getActiveData();
+    currentIndex += 1;
+
+    if (currentIndex >= activeData.length) {
+      currentIndex = 0;
+    }
+
+    updateCycle(currentIndex);
+  }, autoplayDelay);
+
+  if (playPauseBtn) {
+    playPauseBtn.textContent = "⏸ Pause";
+  }
+}
+
+function stopAutoplay() {
+  clearInterval(autoplayInterval);
+  autoplayInterval = null;
+
+  if (playPauseBtn) {
+    playPauseBtn.textContent = "▶ Play";
+  }
+}
+
+function pauseAutoplayOnManualInput() {
+  stopAutoplay();
+  isPlaying = false;
+}
+
+function switchMode(newMode) {
+  if (!modes[newMode]) return;
+
+  stopAutoplay();
+  currentMode = newMode;
+  currentIndex = 0;
+  updateSliderBounds();
+  setActiveTabUI();
+  updateCycle(currentIndex);
+
+  if (isPlaying) {
+    startAutoplay();
+  } else if (playPauseBtn) {
+    playPauseBtn.textContent = "▶ Play";
+  }
+}
+
 function drawAxes(ctx, w, h, padding, xValues, yMin, yMax, yLabel, showOnlyMinMax = false) {
   const plotW = w - padding.left - padding.right;
   const plotH = h - padding.top - padding.bottom;
@@ -241,11 +450,37 @@ function drawLineAndPoints(ctx, visibleData, activeItem, xScale, yScale, valueKe
   }
 }
 
+function drawLabelBox(ctx, x, y, label) {
+  ctx.font = "12px Arial";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  const textW = ctx.measureText(label).width;
+  const boxW = textW + 16;
+  const boxH = 24;
+  const boxX = x - boxW / 2;
+  const boxY = y - 38;
+
+  ctx.fillStyle = "rgba(255,255,255,0.96)";
+  ctx.strokeStyle = "#9fb4c3";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.rect(boxX, boxY, boxW, boxH);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#243340";
+  ctx.fillText(label, x, boxY + boxH / 2);
+}
+
 // =========================
-// Scaling chart
+// CHARTS
 // =========================
 function drawScalingChart(activeIndex) {
   if (!scalingCanvas) return;
+
+  const activeMode = getActiveModeConfig();
+  const activeData = getActiveData();
 
   const ctx = scalingCanvas.getContext("2d");
   const w = scalingCanvas.width;
@@ -254,10 +489,10 @@ function drawScalingChart(activeIndex) {
   ctx.clearRect(0, 0, w, h);
 
   const padding = { top: 30, right: 20, bottom: 50, left: 60 };
-  const xValues = cycleData.map(d => d.cycle);
+  const xValues = activeData.map(d => d.cycle);
 
-  const yMin = 0;
-  const yMax = 4000;
+  const yMin = activeMode.scalingYMin;
+  const yMax = activeMode.scalingYMax;
 
   const { xScale, yScale, plotW } = drawAxes(
     ctx,
@@ -271,31 +506,33 @@ function drawScalingChart(activeIndex) {
     true
   );
 
-  function drawDashedLine(yValue, label, color) {
-    const y = yScale(yValue);
+  if (activeMode.showScalingThresholds) {
+    function drawDashedLine(yValue, label, color) {
+      const y = yScale(yValue);
 
-    ctx.save();
-    ctx.setLineDash([6, 6]);
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.moveTo(padding.left, y);
-    ctx.lineTo(padding.left + plotW, y);
-    ctx.stroke();
-    ctx.restore();
+      ctx.save();
+      ctx.setLineDash([6, 6]);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(padding.left, y);
+      ctx.lineTo(padding.left + plotW, y);
+      ctx.stroke();
+      ctx.restore();
 
-    ctx.fillStyle = color;
-    ctx.font = "12px Arial";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-    ctx.fillText(label, padding.left + 6, y - 4);
+      ctx.fillStyle = color;
+      ctx.font = "12px Arial";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(label, padding.left + 6, y - 4);
+    }
+
+    drawDashedLine(500, "Insignificant limit (500)", "#4caf50");
+    drawDashedLine(1500, "Failure limit (1500)", "#d9534f");
   }
 
-  drawDashedLine(500, "Insignificant limit (500)", "#4caf50");
-  drawDashedLine(1500, "Failure limit (1500)", "#d9534f");
-
-  const visibleData = cycleData.slice(0, activeIndex + 1);
-  const activeItem = cycleData[activeIndex];
+  const visibleData = activeData.slice(0, activeIndex + 1);
+  const activeItem = activeData[activeIndex];
 
   drawLineAndPoints(
     ctx,
@@ -311,36 +548,16 @@ function drawScalingChart(activeIndex) {
   if (activeItem) {
     const x = xScale(activeItem.cycle);
     const y = yScale(activeItem.scaling);
-
     const label = `(${activeItem.cycle}, ${activeItem.scaling})`;
-    ctx.font = "12px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const textW = ctx.measureText(label).width;
-    const boxW = textW + 16;
-    const boxH = 24;
-    const boxX = x - boxW / 2;
-    const boxY = y - 38;
-
-    ctx.fillStyle = "rgba(255,255,255,0.96)";
-    ctx.strokeStyle = "#9fb4c3";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.rect(boxX, boxY, boxW, boxH);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "#243340";
-    ctx.fillText(label, x, boxY + boxH / 2);
+    drawLabelBox(ctx, x, y, label);
   }
 }
 
-// =========================
-// Cryogenic suction chart
-// =========================
-function drawMassGainChart(activeIndex) {
+function drawSecondaryChart(activeIndex) {
   if (!massGainCanvas) return;
+
+  const activeMode = getActiveModeConfig();
+  const activeData = getActiveData();
 
   const ctx = massGainCanvas.getContext("2d");
   const w = massGainCanvas.width;
@@ -349,10 +566,10 @@ function drawMassGainChart(activeIndex) {
   ctx.clearRect(0, 0, w, h);
 
   const padding = { top: 30, right: 20, bottom: 50, left: 60 };
-  const xValues = cycleData.map(d => d.cycle);
+  const xValues = activeData.map(d => d.cycle);
 
-  const yMin = 0;
-  const yMax = 40;
+  const yMin = activeMode.secondaryYMin;
+  const yMax = activeMode.secondaryYMax;
 
   const { xScale, yScale } = drawAxes(
     ctx,
@@ -362,12 +579,12 @@ function drawMassGainChart(activeIndex) {
     xValues,
     yMin,
     yMax,
-    "Cryogenic suction (g)",
-    true
+    activeMode.secondaryTitle,
+    activeMode.secondaryShowOnlyMinMax
   );
 
-  const visibleData = cycleData.slice(0, activeIndex + 1);
-  const activeItem = cycleData[activeIndex];
+  const visibleData = activeData.slice(0, activeIndex + 1);
+  const activeItem = activeData[activeIndex];
 
   drawLineAndPoints(
     ctx,
@@ -375,111 +592,55 @@ function drawMassGainChart(activeIndex) {
     activeItem,
     xScale,
     yScale,
-    "massGain",
-    "#2a9d8f",
-    "#5c8f88"
+    activeMode.secondaryKey,
+    activeMode.secondaryLineColor,
+    activeMode.secondaryPointColor
   );
 
   if (activeItem) {
     const x = xScale(activeItem.cycle);
-    const y = yScale(activeItem.massGain);
-
-    const label = `(${activeItem.cycle}, ${activeItem.massGain.toFixed(1)})`;
-    ctx.font = "12px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    const textW = ctx.measureText(label).width;
-    const boxW = textW + 16;
-    const boxH = 24;
-    const boxX = x - boxW / 2;
-    const boxY = y - 38;
-
-    ctx.fillStyle = "rgba(255,255,255,0.96)";
-    ctx.strokeStyle = "#9fb4c3";
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.rect(boxX, boxY, boxW, boxH);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "#243340";
-    ctx.fillText(label, x, boxY + boxH / 2);
+    const y = yScale(activeItem[activeMode.secondaryKey]);
+    const label = `(${activeItem.cycle}, ${activeItem[activeMode.secondaryKey].toFixed(activeMode.secondaryDecimals)})`;
+    drawLabelBox(ctx, x, y, label);
   }
 }
 
 // =========================
-// Update selected cycle
+// UPDATE VIEWER
 // =========================
 function updateCycle(index) {
-  if (index < 0 || index >= cycleData.length) return;
+  const activeData = getActiveData();
+  const activeMode = getActiveModeConfig();
+
+  if (index < 0 || index >= activeData.length) return;
   if (!cycleImage || !cycleLabel || !cycleDescription || !cycleSlider) return;
 
-  const item = cycleData[index];
+  const item = activeData[index];
   clearTimeout(cycleTimeout);
 
   cycleImage.style.opacity = "0.35";
   cycleSlider.value = index;
 
-  cycleButtons.forEach((btn) => btn.classList.remove("active"));
-  const activeBtn = document.querySelector(`.cycle-btn[data-index="${index}"]`);
-  if (activeBtn) activeBtn.classList.add("active");
-
   cycleTimeout = setTimeout(() => {
     cycleImage.src = item.src;
-    cycleImage.alt = `Concrete surface at ${item.label}`;
+    cycleImage.alt = `${activeMode.name} surface at ${item.label}`;
     cycleLabel.textContent = item.label;
     cycleDescription.textContent =
-      `${item.description} Current scaling: ${item.scaling} g/m². Current cryogenic suction: ${item.massGain.toFixed(1)} g.`;
+      `${item.description} Current scaling: ${item.scaling} g/m². ${activeMode.secondaryValueLabel}: ${item[activeMode.secondaryKey].toFixed(activeMode.secondaryDecimals)}.`;
     cycleImage.style.opacity = "1";
   }, 120);
 
   drawScalingChart(index);
-  drawMassGainChart(index);
+  drawSecondaryChart(index);
 }
 
 // =========================
-// Autoplay controls
+// INITIALIZATION
 // =========================
-let autoplayInterval = null;
-let isPlaying = true;
-let currentIndex = 0;
-const autoplayDelay = 1800;
-
-function startAutoplay() {
-  if (autoplayInterval) return;
-
-  autoplayInterval = setInterval(() => {
-    currentIndex += 1;
-
-    if (currentIndex >= cycleData.length) {
-      currentIndex = 0;
-    }
-
-    updateCycle(currentIndex);
-  }, autoplayDelay);
-
-  if (playPauseBtn) {
-    playPauseBtn.textContent = "⏸ Pause";
-  }
-}
-
-function stopAutoplay() {
-  clearInterval(autoplayInterval);
-  autoplayInterval = null;
-
-  if (playPauseBtn) {
-    playPauseBtn.textContent = "▶ Play";
-  }
-}
-
-function pauseAutoplayOnManualInput() {
-  stopAutoplay();
-  isPlaying = false;
-}
-
 if (cycleImage && cycleLabel && cycleDescription && cycleSlider) {
   currentIndex = 0;
+  updateSliderBounds();
+  setActiveTabUI();
   updateCycle(currentIndex);
   startAutoplay();
 
@@ -487,14 +648,6 @@ if (cycleImage && cycleLabel && cycleDescription && cycleSlider) {
     pauseAutoplayOnManualInput();
     currentIndex = Number(cycleSlider.value);
     updateCycle(currentIndex);
-  });
-
-  cycleButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      pauseAutoplayOnManualInput();
-      currentIndex = Number(btn.dataset.index);
-      updateCycle(currentIndex);
-    });
   });
 
   if (playPauseBtn) {
@@ -505,6 +658,18 @@ if (cycleImage && cycleLabel && cycleDescription && cycleSlider) {
         startAutoplay();
       }
       isPlaying = !isPlaying;
+    });
+  }
+
+  if (frostSaltTab) {
+    frostSaltTab.addEventListener("click", () => {
+      switchMode("frostSalt");
+    });
+  }
+
+  if (pureFrostTab) {
+    pureFrostTab.addEventListener("click", () => {
+      switchMode("pureFrost");
     });
   }
 }
