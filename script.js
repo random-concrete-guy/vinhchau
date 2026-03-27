@@ -36,7 +36,7 @@ const cycleData = [
     src: "images/cycle4.jpg",
     description: "Very early stage with minimal visible change.",
     scaling: 152,
-    massGain: 0.18
+    massGain: 7.9
   },
   {
     cycle: 8,
@@ -44,7 +44,7 @@ const cycleData = [
     src: "images/cycle8.jpg",
     description: "Early exposure stage; surface still mostly intact.",
     scaling: 253,
-    massGain: 0.29
+    massGain: 11.9
   },
   {
     cycle: 14,
@@ -52,7 +52,7 @@ const cycleData = [
     src: "images/cycle14.jpg",
     description: "Initial signs of surface distress may begin.",
     scaling: 397,
-    massGain: 0.41
+    massGain: 17.4
   },
   {
     cycle: 28,
@@ -60,7 +60,7 @@ const cycleData = [
     src: "images/cycle28.jpg",
     description: "Scaling becomes more noticeable.",
     scaling: 700,
-    massGain: 0.63
+    massGain: 22.3
   },
   {
     cycle: 40,
@@ -68,7 +68,7 @@ const cycleData = [
     src: "images/cycle40.jpg",
     description: "Progressive surface damage develops.",
     scaling: 1145,
-    massGain: 0.82
+    massGain: 24.8
   },
   {
     cycle: 56,
@@ -76,7 +76,7 @@ const cycleData = [
     src: "images/cycle56.jpg",
     description: "Clear scaling with visible material loss.",
     scaling: 1506,
-    massGain: 1.04
+    massGain: 27.2
   },
   {
     cycle: 70,
@@ -84,7 +84,7 @@ const cycleData = [
     src: "images/cycle70.jpg",
     description: "Advanced deterioration of the surface.",
     scaling: 1988,
-    massGain: 1.21
+    massGain: 30.1
   },
   {
     cycle: 84,
@@ -92,7 +92,7 @@ const cycleData = [
     src: "images/cycle84.jpg",
     description: "Severe scaling across the exposed surface.",
     scaling: 2439,
-    massGain: 1.36
+    massGain: 32.5
   },
   {
     cycle: 98,
@@ -100,7 +100,7 @@ const cycleData = [
     src: "images/cycle98.jpg",
     description: "Late-stage deterioration after prolonged exposure.",
     scaling: 3081,
-    massGain: 1.52
+    massGain: 36.5
   }
 ];
 
