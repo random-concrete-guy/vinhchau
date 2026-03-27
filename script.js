@@ -19,7 +19,6 @@ window.addEventListener("load", revealOnScroll);
 
 // =========================
 // Scaling viewer data
-// Replace massGain values with your real data
 // =========================
 const cycleData = [
   {
@@ -28,7 +27,7 @@ const cycleData = [
     src: "images/cycle0.jpg",
     description: "Initial surface condition before freeze-thaw exposure.",
     scaling: 0,
-    massGain: 0.00
+    massGain: 0.0
   },
   {
     cycle: 4,
@@ -112,6 +111,7 @@ const cycleButtons = document.querySelectorAll(".cycle-btn");
 
 const scalingCanvas = document.getElementById("scalingChart");
 const massGainCanvas = document.getElementById("massGainChart");
+const playPauseBtn = document.getElementById("playPauseBtn");
 
 let cycleTimeout;
 
@@ -164,7 +164,7 @@ function drawAxes(ctx, w, h, padding, xValues, yMin, yMax, yLabel, showOnlyMinMa
       ctx.stroke();
 
       ctx.fillStyle = "#5d6b78";
-      ctx.fillText(yVal.toFixed(2), padding.left - 8, y);
+      ctx.fillText(yVal.toFixed(1), padding.left - 8, y);
     }
   }
 
@@ -271,7 +271,6 @@ function drawScalingChart(activeIndex) {
     true
   );
 
-  // dashed threshold lines
   function drawDashedLine(yValue, label, color) {
     const y = yScale(yValue);
 
@@ -309,7 +308,6 @@ function drawScalingChart(activeIndex) {
     "#4f7a96"
   );
 
-  // active label box
   if (activeItem) {
     const x = xScale(activeItem.cycle);
     const y = yScale(activeItem.scaling);
@@ -339,7 +337,7 @@ function drawScalingChart(activeIndex) {
 }
 
 // =========================
-// Mass gain chart
+// Cryogenic suction chart
 // =========================
 function drawMassGainChart(activeIndex) {
   if (!massGainCanvas) return;
@@ -353,7 +351,6 @@ function drawMassGainChart(activeIndex) {
   const padding = { top: 30, right: 20, bottom: 50, left: 60 };
   const xValues = cycleData.map(d => d.cycle);
 
-  const allMassGain = cycleData.map(d => d.massGain);
   const yMin = 0;
   const yMax = 40;
 
@@ -365,7 +362,7 @@ function drawMassGainChart(activeIndex) {
     xValues,
     yMin,
     yMax,
-    "Mass gain (g)",
+    "Cryogenic suction (g)",
     true
   );
 
@@ -383,7 +380,6 @@ function drawMassGainChart(activeIndex) {
     "#5c8f88"
   );
 
-  // active label box
   if (activeItem) {
     const x = xScale(activeItem.cycle);
     const y = yScale(activeItem.massGain);
@@ -434,7 +430,7 @@ function updateCycle(index) {
     cycleImage.alt = `Concrete surface at ${item.label}`;
     cycleLabel.textContent = item.label;
     cycleDescription.textContent =
-      `${item.description} Current scaling: ${item.scaling} g/m². Current mass gain: ${item.massGain.toFixed(2)} g.`;
+      `${item.description} Current scaling: ${item.scaling} g/m². Current cryogenic suction: ${item.massGain.toFixed(1)} g.`;
     cycleImage.style.opacity = "1";
   }, 120);
 
@@ -442,16 +438,73 @@ function updateCycle(index) {
   drawMassGainChart(index);
 }
 
+// =========================
+// Autoplay controls
+// =========================
+let autoplayInterval = null;
+let isPlaying = true;
+let currentIndex = 0;
+const autoplayDelay = 1800;
+
+function startAutoplay() {
+  if (autoplayInterval) return;
+
+  autoplayInterval = setInterval(() => {
+    currentIndex += 1;
+
+    if (currentIndex >= cycleData.length) {
+      currentIndex = 0;
+    }
+
+    updateCycle(currentIndex);
+  }, autoplayDelay);
+
+  if (playPauseBtn) {
+    playPauseBtn.textContent = "⏸ Pause";
+  }
+}
+
+function stopAutoplay() {
+  clearInterval(autoplayInterval);
+  autoplayInterval = null;
+
+  if (playPauseBtn) {
+    playPauseBtn.textContent = "▶ Play";
+  }
+}
+
+function pauseAutoplayOnManualInput() {
+  stopAutoplay();
+  isPlaying = false;
+}
+
 if (cycleImage && cycleLabel && cycleDescription && cycleSlider) {
-  updateCycle(0);
+  currentIndex = 0;
+  updateCycle(currentIndex);
+  startAutoplay();
 
   cycleSlider.addEventListener("input", () => {
-    updateCycle(Number(cycleSlider.value));
+    pauseAutoplayOnManualInput();
+    currentIndex = Number(cycleSlider.value);
+    updateCycle(currentIndex);
   });
 
   cycleButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
-      updateCycle(Number(btn.dataset.index));
+      pauseAutoplayOnManualInput();
+      currentIndex = Number(btn.dataset.index);
+      updateCycle(currentIndex);
     });
   });
+
+  if (playPauseBtn) {
+    playPauseBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+      isPlaying = !isPlaying;
+    });
+  }
 }
