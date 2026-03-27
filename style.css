@@ -393,11 +393,9 @@ footer {
 }
 
 .scaling-plot-panel {
-  background: rgba(255,255,255,0.8);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1rem 1rem 1.2rem;
-  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .scaling-plot-panel h3 {
@@ -414,6 +412,15 @@ footer {
   border: 1px solid var(--border);
   border-radius: 10px;
   margin-bottom: 0.9rem;
+}
+#massGainChart {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
 .cycle-controls {
