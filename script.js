@@ -355,7 +355,7 @@ function drawMassGainChart(activeIndex) {
 
   const allMassGain = cycleData.map(d => d.massGain);
   const yMin = 0;
-  const yMax = Math.max(...allMassGain) * 1.15 || 1;
+  const yMax = 40;
 
   const { xScale, yScale } = drawAxes(
     ctx,
@@ -366,7 +366,7 @@ function drawMassGainChart(activeIndex) {
     yMin,
     yMax,
     "Mass gain (g)",
-    false
+    true
   );
 
   const visibleData = cycleData.slice(0, activeIndex + 1);
@@ -388,7 +388,7 @@ function drawMassGainChart(activeIndex) {
     const x = xScale(activeItem.cycle);
     const y = yScale(activeItem.massGain);
 
-    const label = `(${activeItem.cycle}, ${activeItem.massGain.toFixed(2)})`;
+    const label = `(${activeItem.cycle}, ${activeItem.massGain.toFixed(1)})`;
     ctx.font = "12px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
