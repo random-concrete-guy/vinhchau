@@ -482,6 +482,37 @@ footer {
 .cycle-marks {
   display: none;
 }
+/* =========================
+   ATTACK MODE TABS
+========================= */
+.attack-tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.attack-tab {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: rgba(255,255,255,0.8);
+  color: var(--accent-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.attack-tab:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+
+.attack-tab.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 6px 14px rgba(79, 122, 150, 0.18);
+}
 @media (max-width: 900px) {
   .scaling-top {
     grid-template-columns: 1fr;
