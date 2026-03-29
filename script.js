@@ -111,7 +111,7 @@ const pureFrostData = [
     src: "images/purefrost0.jpg",
     description: "Initial condition before pure frost exposure.",
     scaling: 0,
-    secondary: 100.0
+    secondary: 0.0
   },
   {
     cycle: 4,
@@ -150,7 +150,7 @@ const pureFrostData = [
     label: "40 cycles",
     src: "images/purefrost40.jpg",
     description: "Insignificant scaling.",
-    scaling: 62,
+    scaling: 62.0,
     secondary: 19.7
   },
   {
@@ -166,7 +166,7 @@ const pureFrostData = [
     label: "70 cycles",
     src: "images/purefrost70.jpg",
     description: "Insignificant scaling.",
-    scaling: 95,
+    scaling: 95.0,
     secondary: 25.9
   },
   {
@@ -174,7 +174,7 @@ const pureFrostData = [
     label: "84 cycles",
     src: "images/purefrost84.jpg",
     description: "Insignificant scaling.",
-    scaling: 117,
+    scaling: 117.0,
     secondary: 27.1
   },
   {
@@ -182,7 +182,7 @@ const pureFrostData = [
     label: "98 cycles",
     src: "images/purefrost98.jpg",
     description: "Insignificant scaling.",
-    scaling: 125,
+    scaling: 125.0,
     secondary: 27.8
   }
 ];
@@ -207,18 +207,18 @@ const modes = {
   pureFrost: {
     name: "Pure frost attack",
     data: pureFrostData,
-    secondaryTitle: "Relative dynamic modulus (%)",
-    secondaryValueLabel: "Current RDM",
+    secondaryTitle: "Cryogenic suction (g)",
+    secondaryValueLabel: "Current cryogenic suction",
     secondaryKey: "secondary",
     secondaryDecimals: 1,
     secondaryYMin: 0,
-    secondaryYMax: 100,
+    secondaryYMax: 40,
     secondaryShowOnlyMinMax: true,
     secondaryLineColor: "#8a5cf6",
     secondaryPointColor: "#a084e8",
     scalingYMin: 0,
-    scalingYMax: 400,
-    showScalingThresholds: false
+    scalingYMax: 4000,
+    showScalingThresholds: true
   }
 };
 
