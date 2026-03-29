@@ -259,9 +259,7 @@ ul {
 }
 
 .figure {
-  position: relative;
-  display: inline-block;
-  width: 100%;
+  text-align: center;
   max-width: 900px;
   margin: 20px auto;
 }
@@ -269,22 +267,16 @@ ul {
 .figure-img {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 8px;
 }
 
 .figure-caption {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  right: 10px;
-
-  background: rgba(0, 0, 0, 0.6); /* semi-transparent */
-  color: white;
+  margin-top: 8px;
   font-size: 0.9rem;
-  padding: 8px 12px;
-  border-radius: 6px;
+  color: var(--muted);
+  line-height: 1.5;
 }
+
 footer {
   text-align: center;
   padding: 2rem;
