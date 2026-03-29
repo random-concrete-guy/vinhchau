@@ -258,6 +258,32 @@ ul {
   padding-left: 1.2rem;
 }
 
+.figure {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.figure-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.figure-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent */
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
 footer {
   text-align: center;
   padding: 2rem;
