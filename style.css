@@ -273,8 +273,11 @@ ul {
 .figure-caption {
   margin-top: 8px;
   font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.5;
+  color: #222;
+
+  background: rgba(0, 0, 0, 0.06);  /* light shade */
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 footer {
