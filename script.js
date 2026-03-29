@@ -117,73 +117,73 @@ const pureFrostData = [
     cycle: 4,
     label: "4 cycles",
     src: "images/purefrost4.jpg",
-    description: "Minimal visible change under early pure frost exposure.",
-    scaling: 20,
-    secondary: 99.2
+    description: "Insignificant scaling.",
+    scaling: 19.0,
+    secondary: 3.0
   },
   {
     cycle: 8,
     label: "8 cycles",
     src: "images/purefrost8.jpg",
-    description: "Slight deterioration may begin under repeated freezing.",
-    scaling: 35,
-    secondary: 98.5
+    description: "Insignificant scaling.",
+    scaling: 29.0,
+    secondary: 5.5
   },
   {
     cycle: 14,
     label: "14 cycles",
     src: "images/purefrost14.jpg",
-    description: "Minor surface distress becomes more apparent.",
-    scaling: 60,
-    secondary: 97.0
+    description: "Insignificant scaling.",
+    scaling: 33.0,
+    secondary: 8.8
   },
   {
     cycle: 28,
     label: "28 cycles",
     src: "images/purefrost28.jpg",
-    description: "Progressive frost damage develops.",
-    scaling: 95,
-    secondary: 95.4
+    description: "Insignificant scaling.",
+    scaling: 51.0,
+    secondary: 14.5
   },
   {
     cycle: 40,
     label: "40 cycles",
     src: "images/purefrost40.jpg",
-    description: "Damage accumulation continues with repeated cycles.",
-    scaling: 130,
-    secondary: 93.8
+    description: "Insignificant scaling.",
+    scaling: 62,
+    secondary: 19.7
   },
   {
     cycle: 56,
     label: "56 cycles",
     src: "images/purefrost56.jpg",
-    description: "More pronounced deterioration is visible.",
-    scaling: 180,
-    secondary: 91.5
+    description: "Insignificant scaling.",
+    scaling: 83.0,
+    secondary: 24.4
   },
   {
     cycle: 70,
     label: "70 cycles",
     src: "images/purefrost70.jpg",
-    description: "Advanced damage state under pure frost attack.",
-    scaling: 240,
-    secondary: 88.0
+    description: "Insignificant scaling.",
+    scaling: 95,
+    secondary: 25.9
   },
   {
     cycle: 84,
     label: "84 cycles",
     src: "images/purefrost84.jpg",
-    description: "Severe frost-induced deterioration continues.",
-    scaling: 300,
-    secondary: 84.5
+    description: "Insignificant scaling.",
+    scaling: 117,
+    secondary: 27.1
   },
   {
     cycle: 98,
     label: "98 cycles",
     src: "images/purefrost98.jpg",
-    description: "Late-stage pure frost damage after prolonged exposure.",
-    scaling: 360,
-    secondary: 80.0
+    description: "Insignificant scaling.",
+    scaling: 125,
+    secondary: 27.8
   }
 ];
 
